@@ -1,0 +1,9 @@
+.search-tags-panel {
+    position: relative;
+    z-index: 1;
+}
+
+.search-tags-panel .suggested-tags {
+    position: absolute;
+    top: 38px;
+}

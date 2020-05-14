@@ -1,0 +1,5 @@
+node_modules
+*.pyc
+.idea
+.DS_Store
+.mypy_cache
