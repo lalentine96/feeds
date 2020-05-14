@@ -1,0 +1,11 @@
+.tag-close {
+    border: none;
+    background-color: transparent;
+}
+
+.tag-close:hover {
+    border: none;
+    background-color: transparent;
+    color: #000!important;
+}
+

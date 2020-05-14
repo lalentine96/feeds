@@ -1,0 +1,14 @@
+.source-link {
+    display: inline-block;
+	width: 20px;
+    height: 20px;
+    background-image: url('../../img/logo-micro.png');
+}
+
+.reddit {
+	background-position: 40px 0;
+}
+
+.telegram {
+	background-position: 20px 0;
+}

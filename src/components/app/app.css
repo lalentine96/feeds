@@ -1,0 +1,8 @@
+.app {
+    padding: 2rem 0;
+}
+
+.app > div {
+    max-width: 44rem;
+    margin: auto;
+}
