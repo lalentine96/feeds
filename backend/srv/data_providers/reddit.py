@@ -59,7 +59,7 @@ def load_demo() -> typing.Dict[str, RedditPost]:
             author=data['author'],
             author_link=f'https://www.reddit.com/user/{data["author"]}',
             title=html.unescape(data['title']),
-            original_url=f'https://www.reddit.com/{data["permalink"]}',
+            original_url=f'https://www.reddit.com{data["permalink"]}',
             resource_url=data['url'],
             text=html.unescape(data['selftext']),
             date=data['created_utc'],

@@ -6,3 +6,14 @@
 .author a {
     font-weight: bold;
 }
+
+.feeds-item-header {
+    flex-wrap: wrap;
+}
+
+@media only screen and (max-width: 37.5em) {
+    .feeds-item-header-date {
+        order: 1;
+        width: 100%;
+    }
+}

@@ -2,11 +2,12 @@ import { changeTag } from '../utils';
 
 const initialState = {
     login: null,
+    isDemo: false,
     feeds: [],
     loading: false,
-    error: null,
+    error: '',
     hasMore: true,
-    suggestedTags: new Set()
+    suggestedTags: []
 };
 
 const updatePosts = (postId, state, getNewPost) => {
@@ -33,6 +34,7 @@ const updatePosts = (postId, state, getNewPost) => {
 
     return {
         ...state,
+        error: '',
         loading: false,
         feeds: resPosts,
     };
@@ -44,19 +46,22 @@ const reducer = (state = initialState, action) => {
         case 'CHANGE_LOGIN_SUCCESS':
             return {
                 ...state,
+                error: '',
                 login: action.login,
+                isDemo: action.isDemo ? true : state.isDemo,
                 loading: false
             }
         case 'LOAD_FEEDS_REQUEST':
             return {
                 ...state,
                 loading: true,
+                error: ''
             };
         case 'LOAD_FEEDS_SUCCESS':
             return {
                 ...state,
+                error: '',
                 loading: false,
-                error: null,
                 hasMore: action.hasMore,
                 feeds: [
                     ...state.feeds, 
@@ -65,7 +70,7 @@ const reducer = (state = initialState, action) => {
         case 'CLEAR_FEEDS_SUCCESS':
             return {
                 ...state,
-                feeds: []
+                feeds: [],
             }
         case 'LOAD_FEEDS_FAILURE':
             return {
@@ -84,6 +89,8 @@ const reducer = (state = initialState, action) => {
                 clearTimeout(post.deleteTimer);
                 return {
                     ...post,
+                    error: '',
+                    loading: false,
                     deleteTimer: -1
                 };
             });
@@ -97,6 +104,7 @@ const reducer = (state = initialState, action) => {
         case 'SUGGEST_TAGS_SUCCESS':
             return {
                 ...state,
+                error: '',
                 suggestedTags: action.tags,
             };
          

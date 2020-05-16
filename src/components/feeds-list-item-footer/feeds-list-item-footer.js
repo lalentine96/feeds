@@ -1,6 +1,5 @@
 import React from 'react';
 
-import Tags from '../tags';
 import AddTagForm from '../add-tag-form';
 
 import './feeds-list-item-footer.css';

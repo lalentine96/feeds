@@ -1,3 +1,7 @@
+.tag:hover {
+    cursor: pointer;
+}
+
 .tag-close {
     border: none;
     background-color: transparent;

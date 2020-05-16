@@ -1,8 +1,29 @@
 .app {
-    padding: 2rem 0;
+    padding: 3.2rem 0;
+    border-radius: 0;
 }
 
-.app > div {
+@media only screen and (max-width: 56.25em) {
+    .app {
+        padding: 3.2rem 4rem;
+    }
+
+    html {
+        font-size: 90%;
+    }
+}
+
+@media only screen and (max-width: 37.5em) {
+    .app {
+        padding: 3.2rem 2rem;
+    }
+
+    html {
+        font-size: 85%;
+    }
+}
+
+.feeds-page > * {
     max-width: 44rem;
     margin: auto;
 }

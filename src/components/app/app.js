@@ -7,6 +7,7 @@ import { withFeedsService } from '../hoc';
 import { checkLogin } from '../../actions';
 
 import './app.css';
+import ErrorPopup from '../error-popup';
 
 class App extends Component {
 
@@ -16,11 +17,14 @@ class App extends Component {
     }
 
     render() {
-
         return (
             <div className="app jumbotron mb-0 min-vh-100">
+                {
+                    !!this.props.error &&
+                    <ErrorPopup err={this.props.error}/>
+                }
 
-                <Route path="/feeds" component={FeedsPage} />;
+                <Route path="/feeds" component={FeedsPage} />
                 <Route path="/login" component={LoginPage} />
 
                 {
@@ -35,7 +39,7 @@ class App extends Component {
     }
 };
 
-const mapStateToProps = ({ login, loading, feeds }) => ({ login, loading, feeds });
+const mapStateToProps = ({ login, loading, feeds, error }) => ({ login, loading, feeds, error });
 
 const mapMethodsToProps = (dispatch, { feedsService }) => {
     return {
