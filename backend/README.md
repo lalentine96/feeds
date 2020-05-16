@@ -16,6 +16,17 @@ Cookie + CSRF token in `X-CSRF-Token` header
 
 ### API
 
+- register
+```
+POST /register {"login": "login", "password": "password"}
+
+{
+    "csrf_token": "...",
+    "login": "login",
+    "is_demo": boolean,
+}
+```
+
 - login:
 ```
 POST /login {"login": "login", "password": "password"}

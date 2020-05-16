@@ -33,5 +33,6 @@ def setup_routes(
     _add_route('POST', '/api/data/tag/delete', api_handlers.delete_tag)
     _add_route('POST', '/api/login', api_handlers.login)
     _add_route('POST', '/api/logout', api_handlers.logout)
-    _add_route('GET', '/api/whoami', api_handlers.who_am_i)
+    _add_route('POST', '/api/register', api_handlers.register)
     _add_route('GET', '/api/tags/suggest', api_handlers.tags_suggest)
+    _add_route('GET', '/api/whoami', api_handlers.who_am_i)

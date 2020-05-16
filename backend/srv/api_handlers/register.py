@@ -7,15 +7,11 @@ async def handler(request: web.Request) -> web.Response:
     ctx: app.App = request.app['ctx']
     data = await request.json()
     login, password = data.get('login'), data.get('password')
-    if not (login or password):
-        return web.json_response(
-            {'error': 'login or password not provided'}, status=400,
-        )
-    if ctx.users_storage.check_user(login, password):
-        return web.json_response(
-            {'error': 'incorrect login or password provided'}, status=400,
-        )
-    session = request.app['ctx'].session_manager.get_session_for_login(
+    try:
+        ctx.users_storage.add_user(login, password)
+    except ValueError as exc:
+        return web.json_response({'error': str(exc)}, status=400)
+    session = ctx.session_manager.get_session_for_login(
         login=login,
     )
     return web.json_response(

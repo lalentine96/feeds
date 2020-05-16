@@ -2,11 +2,13 @@ from aiohttp import web
 
 from srv import session_manager
 from srv import tags_index
+from srv import users
 from srv.data_providers import reddit
 
 
 class App:
     def __init__(self) -> None:
+        self.users_storage = users.demo_storage()
         self.reddit_posts = reddit.load_demo()
         self.session_manager = session_manager.SessionManager()
         self.tags_index = tags_index.TagsIndex()
