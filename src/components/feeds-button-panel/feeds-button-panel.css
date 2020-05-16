@@ -3,3 +3,9 @@
     right: 6px;
     top: 6px;
 }
+
+@media only screen and (max-width: 66em) {
+    .feeds-button-panel {
+        position: absolute;
+    }
+}

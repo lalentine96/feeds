@@ -37,18 +37,21 @@ class FeedsList extends Component {
     _isMounted = false;
 
     componentDidMount() {     
-
         this._isMounted = true;
 
-        if (!this.props.loading) {
-            this.props.history.listen((location) => {
-                this.updatePosts(null, location);
-            });
+        this.unregisterHistoryListener = this.props.history.listen((location) => {
+            if (location.pathname !== '/feeds') return;
+            
+            this.updatePosts(null, location);
+        });
+
+        if (!this.props.loading && this.props.login) {
             this.updatePosts();
         }
 
         window.onscroll = debounce(() => {
-            const { loading, hasMore, error, feeds} = this.props;
+
+            const { loading, hasMore, error, feeds } = this.props;
             if (loading || !hasMore || error || !this._isMounted) return;
 
             if (isPageBottom()) {
@@ -64,11 +67,14 @@ class FeedsList extends Component {
     }
 
     componentWillUnmount() {
+        this.unregisterHistoryListener();
         this._isMounted = false;
     }
     
     render() {
         const { feeds, loading, hasMore } = this.props;
+
+        //console.log(this.props.loading, this.props.login);
 
         return (
             <>

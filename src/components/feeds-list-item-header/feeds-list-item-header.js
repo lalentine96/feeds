@@ -14,7 +14,7 @@ const HeaderDate = ({ date }) => {
     }
   
     return (
-        <span className="date">
+        <span className="date feeds-item-header-date">
         {months[postDate.getMonth()]}{' '}
         {addZero(postDate.getDate())}{', '} 
         {postDate.getFullYear()}{' '}
@@ -25,7 +25,7 @@ const HeaderDate = ({ date }) => {
 
 const FeedsListItemHeader = ({ author, author_link: authorLink, subreddit, date, id, deletePost }) => {
     return (
-        <div className="card-header d-flex">
+        <div className="card-header d-flex feeds-item-header">
             <div className="mr-auto author">
                 by <a 
                     href={authorLink} 

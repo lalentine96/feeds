@@ -13,12 +13,34 @@ import './search-tags-panel.css';
 class SearchTagsPanel extends Component {
     constructor(props) {
         super(props);
-        const { tags } = queryString.parse(props.location.search);
 
         this.state = {
             prefix: '',
+            tags: new Set()
+        };
+    }
+
+    initialState = (location) => {
+        const { tags } = queryString.parse(location.search);
+
+        return {
+            prefix: '',
             tags: new Set(tags ? tags.split(',') : [])
         };
+    }
+
+    componentDidMount() {
+        this.setState(this.initialState(this.props.location));
+
+        this.unregisterHistoryListener = this.props.history.listen((location) => {
+            if (location.pathname !== '/feeds') return;
+            
+            this.setState(this.initialState(location));
+        });
+    }
+
+    componentWillUnmount() {
+        this.unregisterHistoryListener();
     }
 
     onChangePrefix = (e) => {
@@ -33,48 +55,44 @@ class SearchTagsPanel extends Component {
     };
 
     onChangeFilterTag = (tag, action) => {
-        this.setState(state => {
-            const newState = changeTag(state, tag, action);
+        const newState = changeTag(this.state, tag, action);
 
-            const queryObj = {
-                tags: Array.from(newState.tags).join(',')
-            };
+        const queryObj = {
+            tags: Array.from(newState.tags).join(',')
+        };
 
-            const queryStr = queryObj.tags ? `?${queryString.stringify(queryObj)}` : '';
+        const queryStr = queryObj.tags ? `?${queryString.stringify(queryObj)}` : '';
 
-            this.props.history.push(`feeds${queryStr}`)
+        this.props.history.push(`feeds${queryStr}`);
 
-            return {
-                ...newState,
-                prefix: ''
-            };
-        }); 
     };
 
     render() {
         const { suggestedTags } = this.props;
+        const { prefix, tags } = this.state;
+        const filteredSuggest = suggestedTags.filter(tag => !tags.has(tag))
 
         return (
-                <div className="form-group search-tags-panel">
+                <div className="form-group search-tags-panel mb-2">
                     <input 
                         type="text"
                         className="form-control"
-                        placeholder="Enter the tag you want to search for posts by"
-                        value={this.state.prefix}
+                        placeholder="Enter the tag you want to search by"
+                        value={prefix}
                         onChange={this.onChangePrefix} />
                     {
-                        this.state.tags.size !== 0 &&
-                        <div className="container px-0 pt-2">
+                        tags.size !== 0 &&
+                        <div className="container px-0 pt-2 filter-tags">
                             <Tags 
-                                tags={this.state.tags}
+                                tags={tags}
                                 onDeleteTag={tag => this.onChangeFilterTag(tag, 'delete')} />
                         </div>
                     }
                     {
-                        suggestedTags.size !== 0 && this.state.prefix !== '' &&
+                        !!filteredSuggest.length && prefix !== '' &&
                         <div className="container bg-light py-3 suggested-tags">
                             <Tags 
-                                tags={suggestedTags}
+                                tags={filteredSuggest}
                                 onTagClick={tag => this.onChangeFilterTag(tag, 'add')} />
                         </div>
                     }

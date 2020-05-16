@@ -5,6 +5,8 @@ import { changeTag } from '../../actions';
 import Tags from '../tags';
 import { withFeedsService } from '../hoc';
 
+import './add-tag-form.css';
+
 class AddTagForm extends Component {
     state = {
         currentTag: ''
@@ -39,13 +41,13 @@ class AddTagForm extends Component {
                     onSubmit={this.onAddTag }>
                     <input 
                         type="text" 
-                        className="form-control p-1 mt-2"
+                        className="form-control mt-2 add-tag-input"
                         placeholder="Put new tag here"
                         value={currentTag}
                         onChange={this.onChangeCurrentTag} />
                     <button
                         type="submit"
-                        className="btn btn-outline-secondary mt-2 ml-1"
+                        className="add-tag-submit btn btn-outline-secondary mt-2"
                         >
                         Add
                     </button>

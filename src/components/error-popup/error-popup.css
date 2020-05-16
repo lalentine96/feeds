@@ -1,0 +1,9 @@
+.error-popup .modal {
+    display: block;
+    pointer-events: none;
+}
+
+.modal-dialog {
+    opacity: 1;
+    padding: 0 2rem;
+}

@@ -60,9 +60,10 @@ export const tagsSuggested = (tags) => {
     };
 };
 
-export const loginChanged = (login) => {
+export const loginChanged = (login, isDemo) => {
     return {
         type: 'CHANGE_LOGIN_SUCCESS',
-        login
+        login,
+        isDemo
     };
 };

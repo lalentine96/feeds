@@ -3,7 +3,7 @@ import LoginForm from '../login-form';
 
 const LoginPage = () => {
     return (
-        <div className="container login-page">
+        <div className="page container login-page">
             <div className="text-center">
                 <h2>
                     Sign in
