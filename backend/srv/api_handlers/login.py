@@ -11,7 +11,7 @@ async def handler(request: web.Request) -> web.Response:
         return web.json_response(
             {'error': 'login or password not provided'}, status=400,
         )
-    if ctx.users_storage.check_user(login, password):
+    if not ctx.users_storage.check_user(login, password):
         return web.json_response(
             {'error': 'incorrect login or password provided'}, status=400,
         )
