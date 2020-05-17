@@ -3,13 +3,10 @@ import React from 'react';
 import './error-popup.css';
 
 class ErrorPopup extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            shown: true
-        };
-    }
-
+    state = {
+        shown: true
+    };
+    
     onHide = () => this.setState({ shown: false });
 
     render() {
