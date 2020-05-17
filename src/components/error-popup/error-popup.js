@@ -10,6 +10,8 @@ class ErrorPopup extends React.Component {
     onHide = () => this.setState({ shown: false });
 
     render() {
+        const { err } = this.props;
+
         return (
             this.state.shown &&
             <div className="error-popup">
@@ -23,7 +25,13 @@ class ErrorPopup extends React.Component {
                                 <h5 className="modal-title">Oops! Something goes wrong</h5>
                             </div>
                             <div className="modal-body">
-                                Sorry, we can't {this.props.err} :(
+                                {
+                                    err === 'wrong login' ?
+                                    'Wrong login or password. Please try again' :
+                                    err === 'user exists' ?
+                                    'User with this login already exists. Please change it' :
+                                    `Sorry, we can't ${err} :(`
+                                }
                             </div>
                             <div className="modal-footer">
                                 <button 

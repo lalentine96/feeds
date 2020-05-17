@@ -55,7 +55,15 @@ const auth = (feedsService, dispatch, action) => (login, password) => {
     dispatch(feedsRequested());
     feedsService.auth(action, login, password)
         .then(login => dispatch(loginChanged(login)))
-        .catch((err) => dispatch(feedsError('log in')));
+        .catch((err) => {
+            let error = action === 'login' ? 'log in' : 'register';
+
+            if (err.message === 'Could not fetch: 400') {
+                error = action === 'login' ? 'wrong login' : 'user exists';
+            }
+
+            dispatch(feedsError(error));
+        });
 };
 
 const logout = (feedsService, dispatch) => () => {
