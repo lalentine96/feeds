@@ -27,3 +27,12 @@
     max-width: 44rem;
     margin: auto;
 }
+
+.modal.show {
+    display: block;
+    pointer-events: none;
+}
+
+.modal-dialog {
+    padding: 0 2rem;
+}

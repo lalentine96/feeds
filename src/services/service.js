@@ -64,8 +64,8 @@ export default class Service {
         });
     }
 
-    async login(login, password) {
-        const res = await this.request(`login`, {
+    async auth(action, login, password) {
+        const res = await this.request(action, {
             method: 'POST',
             body: JSON.stringify({login, password}),     
         });
@@ -73,6 +73,14 @@ export default class Service {
         const json = await res.json();
         this.setToken(json.csrf_token);
         return json.login;
+    }
+
+    async login(login, password) {
+        return await this.auth('login', login, password);
+    }
+
+    async register(login, password) {
+        return await this.auth('register', login, password);
     }
 
     async logout() {

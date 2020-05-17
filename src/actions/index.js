@@ -51,9 +51,9 @@ const suggestTags = (feedsService, dispatch) => (prefix) => {
         .catch((err) => dispatch(feedsError('find the tags')));
 };
 
-const login = (feedsService, dispatch) => (login, password) => {
+const auth = (feedsService, dispatch, action) => (login, password) => {
     dispatch(feedsRequested());
-    feedsService.login(login, password)
+    feedsService.auth(action, login, password)
         .then(login => dispatch(loginChanged(login)))
         .catch((err) => dispatch(feedsError('log in')));
 };
@@ -86,7 +86,7 @@ export {
     changeTag,
     suggestTags,
     checkLogin,
-    login,
+    auth,
     logout,
     reset
 };
