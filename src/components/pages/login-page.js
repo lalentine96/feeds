@@ -29,7 +29,7 @@ export default class LoginPage extends React.Component {
                 <LoginForm action={'login'} id='sign-in' btnLabel='Log in'/>
                 <button
                     type="button"
-                    className="btn btn-outline-dark"
+                    className="btn btn-outline-dark mt-3"
                     onClick={this.toggleShowRegistration}>
                     Sign up
                 </button>
