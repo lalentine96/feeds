@@ -21,7 +21,11 @@ class AddTagForm extends Component {
     onAddTag = (e) => {
         e.preventDefault();
         const { changeTag, id } = this.props;
-        changeTag(id, false, this.state.currentTag);
+        const { currentTag } = this.state;
+
+        if (!currentTag.trim()) return;
+        
+        changeTag(id, false, currentTag.trim());
         this.setState({
             currentTag: ''
         });
