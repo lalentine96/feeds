@@ -60,7 +60,7 @@ GET /whoami
 
 - get posts:
 ```
-GET /data[?page=<int>][tags=tagA,tagB,...][after=<int>]
+GET /data[tags=tagA,tagB,...][after=<int>]
 {
     "posts": [...]
 }
