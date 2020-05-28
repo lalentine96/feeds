@@ -12,15 +12,17 @@ const FeedsListItemFooter = ({ tags, original_url: url, source_type: sourceType,
             </div>
             <ul className="list-group list-group-flush">
                 <li className="list-group-item">
-                    <a 
-                        href={url} 
-                        className={`source-link ${sourceType}`}>
-                    </a>
-                    <a 
-                        href={url}
-                        className="align-top ml-1 text-dark">
-                        See with comments
-                    </a>
+                    <div className="d-flex align-items-center">
+                        <a 
+                            href={url} 
+                            className={`source-link ${sourceType}`}>
+                        </a>
+                        <a 
+                            href={url}
+                            className="align-top ml-1 text-dark">
+                            See with comments
+                        </a>
+                    </div>
                 </li>
             </ul>
         </>

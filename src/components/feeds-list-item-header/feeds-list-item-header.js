@@ -29,11 +29,18 @@ const FeedsListItemHeader = ({ author, author_link: authorLink, subreddit, date,
             <div className="mr-auto author">
                 by <a 
                     href={authorLink} 
-                    className="text-dark">{author}</a> in <a 
-                    href={`https://www.reddit.com/${subreddit}`}
-                    className="text-dark" >
-                    {subreddit}
-                    </a>
+                    className="text-dark">{author}</a>
+                    { 
+                        !!subreddit &&
+                        <>
+                            {' in '}
+                            <a 
+                                href={`https://www.reddit.com/${subreddit}`}
+                                className="text-dark" >
+                                {subreddit}
+                            </a>
+                        </>
+                    }
             </div>
             <HeaderDate date={date} />
             <button 

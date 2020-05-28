@@ -37,7 +37,7 @@ class BasicData(PostData):
     author: str
     author_link: str
     original_url: str
-    resourse_url: str
+    resource_url: str
     text: str
 
     def as_dict(self) -> dict:
@@ -164,7 +164,7 @@ def load_demo() -> typing.Dict[str, Post]:
                     author=post['author'],
                     author_link=post['author_link'],
                     original_url=post['permalink'],
-                    resourse_url=post['url'],
+                    resource_url=post['url'],
                     text=post['text'],
                 ),
             )

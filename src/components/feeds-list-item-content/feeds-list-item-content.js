@@ -57,19 +57,22 @@ export default class FeedsListItemContent extends Component {
     };
 
     render() {
-        const { text, title, resource_url: resource } = this.props;
+        const { text, title, resource_url: resource, source_type: sourceType } = this.props;
         const { hidden } = this.state;
 
         return (
             <div className="card-body">
-                <h4 className="card-title">{title}</h4>
+                {
+                    title &&
+                    <h4 className="card-title">{title}</h4>
+                }
                 <Markdown 
                     source={text}
                     renderers={this.markdownRenderers}
                     includeNodeIndex={hidden}
                 />
                 {
-                    resource.indexOf('https://www.reddit.com') !== 0 &&
+                    resource.indexOf(sourceType) !== 0 &&
                     <ContentItemRenderer>
                         <ContentLinkRenderer href={resource}>
                             See this post on <strong>{resource.split('/')[2]}</strong>.
